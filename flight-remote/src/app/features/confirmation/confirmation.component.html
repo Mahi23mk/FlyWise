@@ -1,0 +1,218 @@
+<div class="confirmation-page">
+
+  <div class="confirmation-container" *ngIf="booking as currentBooking">
+
+    <!-- Success Header -->
+    <section class="success-section">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h1>Booking Confirmed</h1>
+
+      <p>
+        Your flight has been booked successfully.
+      </p>
+
+      <div class="booking-id">
+        <span>Booking ID</span>
+        <strong>{{ currentBooking.id }}</strong>
+      </div>
+
+    </section>
+
+
+    <!-- Flight Details -->
+    <section class="confirmation-card">
+
+      <div class="card-header">
+        <h2>Flight Details</h2>
+      </div>
+
+      <div class="flight-details">
+
+        <!-- Airline -->
+        <div class="airline">
+          <strong>
+            {{ currentBooking.flight.airline }}
+          </strong>
+
+          <span>
+            {{ currentBooking.flight.flightNumber }}
+          </span>
+        </div>
+
+
+        <!-- Route -->
+        <div class="route">
+
+          <div class="airport">
+            <strong>
+              {{ currentBooking.flight.from }}
+            </strong>
+
+            <span>
+              {{ currentBooking.flight.departureTime }}
+            </span>
+          </div>
+
+
+          <div class="route-line">
+
+            <span>
+              {{ currentBooking.flight.duration }}
+            </span>
+
+            <div class="line">
+              <span>→</span>
+            </div>
+
+            <small>
+              {{
+                currentBooking.flight.stops === 0
+                  ? 'Non-stop'
+                  : currentBooking.flight.stops + ' stop'
+              }}
+            </small>
+
+          </div>
+
+
+          <div class="airport">
+            <strong>
+              {{ currentBooking.flight.to }}
+            </strong>
+
+            <span>
+              {{ currentBooking.flight.arrivalTime }}
+            </span>
+          </div>
+
+        </div>
+
+
+        <!-- Price -->
+        <div class="price">
+
+          <span>Amount</span>
+
+          <strong>
+            {{ currentBooking.currency }}
+            {{ currentBooking.amount }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Passenger Details -->
+    <section class="confirmation-card">
+
+      <div class="card-header">
+        <h2>Passenger Details</h2>
+      </div>
+
+      <div class="passenger-details">
+
+        <div>
+          <span>Passenger</span>
+
+          <strong>
+            {{ currentBooking.passenger.firstName }}
+            {{ currentBooking.passenger.lastName }}
+          </strong>
+        </div>
+
+
+        <div>
+          <span>Email</span>
+
+          <strong>
+            {{ currentBooking.passenger.email }}
+          </strong>
+        </div>
+
+
+        <div>
+          <span>Phone</span>
+
+          <strong>
+            {{ currentBooking.passenger.phone }}
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Payment Details -->
+    <section class="confirmation-card">
+
+      <div class="card-header">
+        <h2>Payment Details</h2>
+      </div>
+
+      <div class="payment-details">
+
+        <div>
+          <span>Payment Method</span>
+
+          <strong>
+            {{
+              currentBooking.paymentMethod === 'card'
+                ? 'Credit / Debit Card'
+                : currentBooking.paymentMethod === 'upi'
+                ? 'UPI'
+                : currentBooking.paymentMethod === 'netbanking'
+                ? 'Net Banking'
+                : currentBooking.paymentMethod === 'wallet'
+                ? 'Wallet'
+                : currentBooking.paymentMethod
+            }}
+          </strong>
+        </div>
+
+
+        <div>
+          <span>Amount Paid</span>
+
+          <strong>
+            {{ currentBooking.currency }}
+            {{ currentBooking.amount }}
+          </strong>
+        </div>
+
+
+        <div>
+          <span>Status</span>
+
+          <strong class="paid">
+            ✓ Paid
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Actions -->
+    <div class="confirmation-actions">
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="goToFlights()">
+        Book Another Flight
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

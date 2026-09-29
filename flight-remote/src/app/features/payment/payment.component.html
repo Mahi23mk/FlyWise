@@ -1,0 +1,581 @@
+<div class="payment-page">
+
+  <div class="payment-container">
+
+    <h1>Payment</h1>
+
+    <p class="subtitle">
+      Complete your payment to confirm your booking.
+    </p>
+
+    <!-- Flight Summary -->
+
+    <div
+      class="payment-section"
+      *ngIf="flight"
+    >
+
+      <h2>Flight Summary</h2>
+
+      <div class="flight-summary">
+
+        <div class="airline">
+          <strong>
+            {{ flight.airline }}
+          </strong>
+
+          <span>
+            {{ flight.flightNumber }}
+          </span>
+        </div>
+
+        <div class="route">
+
+          <div>
+            <strong>
+              {{ flight.departureTime }}
+            </strong>
+
+            <span>
+              {{ flight.from }}
+            </span>
+          </div>
+
+          <span class="arrow">→</span>
+
+          <div>
+            <strong>
+              {{ flight.arrivalTime }}
+            </strong>
+
+            <span>
+              {{ flight.to }}
+            </span>
+          </div>
+
+        </div>
+
+        <div class="price">
+
+          <span>Total</span>
+
+          <strong>
+            {{ flight.currency }}
+            {{ flight.price }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Passenger -->
+
+    <div
+      class="payment-section"
+      *ngIf="passenger"
+    >
+
+      <h2>Passenger</h2>
+
+      <div class="passenger-info">
+
+        <div>
+          <span class="label">Name</span>
+
+          <span class="value">
+            {{ passenger.firstName }}
+            {{ passenger.lastName }}
+          </span>
+        </div>
+
+        <div>
+          <span class="label">Email</span>
+
+          <span class="value">
+            {{ passenger.email }}
+          </span>
+        </div>
+
+        <div>
+          <span class="label">Phone</span>
+
+          <span class="value">
+            {{ passenger.phone }}
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Payment Form -->
+
+    <div class="payment-section">
+
+    <h2>Payment Method</h2>
+
+    <div class="payment-methods">
+
+        <!-- Card -->
+
+        <button
+        type="button"
+        class="payment-method"
+        [class.active]="selectedPaymentMethod === 'card'"
+        (click)="selectPaymentMethod('card')"
+        >
+        <span class="payment-icon">💳</span>
+
+        <span class="payment-method-content">
+            <strong>Credit / Debit Card</strong>
+            <small>Visa, Mastercard, RuPay</small>
+        </span>
+
+        <span class="radio-circle"></span>
+        </button>
+
+
+        <!-- UPI -->
+
+        <button
+        type="button"
+        class="payment-method"
+        [class.active]="selectedPaymentMethod === 'upi'"
+        (click)="selectPaymentMethod('upi')"
+        >
+        <span class="payment-icon">📱</span>
+
+        <span class="payment-method-content">
+            <strong>UPI</strong>
+            <small>Google Pay, PhonePe, Paytm</small>
+        </span>
+
+        <span class="radio-circle"></span>
+        </button>
+
+
+        <!-- Net Banking -->
+
+        <button
+        type="button"
+        class="payment-method"
+        [class.active]="selectedPaymentMethod === 'netbanking'"
+        (click)="selectPaymentMethod('netbanking')"
+        >
+        <span class="payment-icon">🏦</span>
+
+        <span class="payment-method-content">
+            <strong>Net Banking</strong>
+            <small>Pay using your bank account</small>
+        </span>
+
+        <span class="radio-circle"></span>
+        </button>
+
+
+        <!-- Wallet -->
+
+        <button
+        type="button"
+        class="payment-method"
+        [class.active]="selectedPaymentMethod === 'wallet'"
+        (click)="selectPaymentMethod('wallet')"
+        >
+        <span class="payment-icon">👛</span>
+
+        <span class="payment-method-content">
+            <strong>Wallet</strong>
+            <small>Pay using a digital wallet</small>
+        </span>
+
+        <span class="radio-circle"></span>
+        </button>
+
+    </div>
+
+    </div>
+
+
+    <!-- Card Form -->
+
+    <div
+    class="payment-section"
+    *ngIf="selectedPaymentMethod === 'card'"
+    >
+
+    <h2>Card Details</h2>
+
+    <form
+        [formGroup]="paymentForm"
+        (ngSubmit)="payNow()"
+    >
+
+        <div class="form-field">
+
+        <label for="cardholderName">
+            Cardholder Name
+        </label>
+
+        <input
+            id="cardholderName"
+            type="text"
+            formControlName="cardholderName"
+            placeholder="Enter cardholder name"
+        />
+
+        <small
+            class="field-error"
+            *ngIf="
+            paymentForm.get('cardholderName')?.invalid &&
+            (
+                paymentForm.get('cardholderName')?.touched ||
+                submitted
+            )
+            "
+        >
+            Cardholder name is required.
+        </small>
+
+        </div>
+
+
+        <div class="form-field">
+
+        <label for="cardNumber">
+            Card Number
+        </label>
+
+        <input
+            id="cardNumber"
+            type="text"
+            inputmode="numeric"
+            maxlength="16"
+            formControlName="cardNumber"
+            placeholder="16-digit card number"
+        />
+
+        <small
+            class="field-error"
+            *ngIf="
+            paymentForm.get('cardNumber')?.invalid &&
+            (
+                paymentForm.get('cardNumber')?.touched ||
+                submitted
+            )
+            "
+        >
+            Please enter a valid 16-digit card number.
+        </small>
+
+        </div>
+
+
+        <div class="form-row">
+
+        <div class="form-field">
+
+            <label for="expiryDate">
+            Expiry Date
+            </label>
+
+            <input
+            id="expiryDate"
+            type="text"
+            maxlength="5"
+            formControlName="expiryDate"
+            placeholder="MM/YY"
+            />
+
+            <small
+            class="field-error"
+            *ngIf="
+                paymentForm.get('expiryDate')?.invalid &&
+                (
+                paymentForm.get('expiryDate')?.touched ||
+                submitted
+                )
+            "
+            >
+            Enter expiry as MM/YY.
+            </small>
+
+        </div>
+
+
+        <div class="form-field">
+
+            <label for="cvv">
+            CVV
+            </label>
+
+            <input
+            id="cvv"
+            type="password"
+            inputmode="numeric"
+            maxlength="3"
+            formControlName="cvv"
+            placeholder="3-digit CVV"
+            />
+
+            <small
+            class="field-error"
+            *ngIf="
+                paymentForm.get('cvv')?.invalid &&
+                (
+                paymentForm.get('cvv')?.touched ||
+                submitted
+                )
+            "
+            >
+            Please enter a valid 3-digit CVV.
+            </small>
+
+        </div>
+
+        </div>
+
+
+        <div class="payment-actions">
+
+        <button
+            type="submit"
+            class="pay-button"
+        >
+            Pay
+            <span *ngIf="flight">
+            {{ flight.currency }}
+            {{ flight.price }}
+            </span>
+        </button>
+
+        </div>
+
+    </form>
+
+    </div>
+
+
+    <!-- Temporary placeholders -->
+
+    <div
+  class="payment-section"
+  *ngIf="selectedPaymentMethod === 'upi'"
+>
+
+  <h2>UPI Payment</h2>
+
+  <div class="upi-info">
+    <span class="upi-icon">📱</span>
+
+    <div>
+      <strong>Pay securely using UPI</strong>
+      <p>
+        Enter your UPI ID to continue with the payment.
+      </p>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="upiForm"
+    (ngSubmit)="payNow()"
+  >
+
+    <div class="form-field">
+
+      <label for="upiId">
+        UPI ID
+      </label>
+
+      <input
+        id="upiId"
+        type="text"
+        formControlName="upiId"
+        placeholder="example@upi"
+        autocomplete="off"
+      />
+
+      <small
+        class="field-error"
+        *ngIf="
+          upiForm.get('upiId')?.invalid &&
+          (
+            upiForm.get('upiId')?.touched ||
+            upiSubmitted
+          )
+        "
+      >
+        Please enter a valid UPI ID.
+      </small>
+
+    </div>
+
+    <div class="payment-actions">
+
+      <button
+        type="submit"
+        class="pay-button"
+      >
+        Pay
+        <span *ngIf="flight">
+          {{ flight.currency }}
+          {{ flight.price }}
+        </span>
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+
+    <div
+    class="payment-section"
+    *ngIf="selectedPaymentMethod === 'netbanking'"
+    >
+
+    <h2>Net Banking</h2>
+
+    <div class="payment-info">
+        <span class="payment-info-icon">🏦</span>
+
+        <div>
+        <strong>Pay using your bank account</strong>
+        <p>
+            Select your bank to continue.
+        </p>
+        </div>
+    </div>
+
+    <form
+        [formGroup]="netBankingForm"
+        (ngSubmit)="payNow()"
+    >
+
+        <div class="form-field">
+
+        <label for="bank">
+            Select Bank
+        </label>
+
+        <select
+            id="bank"
+            formControlName="bank"
+        >
+            <option value="" disabled>
+            Select your bank
+            </option>
+
+            <option value="sbi">
+            State Bank of India
+            </option>
+
+            <option value="hdfc">
+            HDFC Bank
+            </option>
+
+            <option value="icici">
+            ICICI Bank
+            </option>
+
+            <option value="axis">
+            Axis Bank
+            </option>
+
+            <option value="kotak">
+            Kotak Mahindra Bank
+            </option>
+
+            <option value="yes">
+            YES Bank
+            </option>
+        </select>
+
+        <small
+            class="field-error"
+            *ngIf="
+            netBankingForm.get('bank')?.invalid &&
+            (
+                netBankingForm.get('bank')?.touched ||
+                netBankingSubmitted
+            )
+            "
+        >
+            Please select your bank.
+        </small>
+
+        </div>
+
+        <div class="payment-actions">
+
+        <button
+            type="submit"
+            class="pay-button"
+        >
+            Pay
+            <span *ngIf="flight">
+            {{ flight.currency }}
+            {{ flight.price }}
+            </span>
+        </button>
+
+        </div>
+
+    </form>
+
+    </div>
+
+    <div class="payment-section" *ngIf="selectedPaymentMethod === 'wallet'">
+    <h2>Wallet Payment</h2>
+
+    <div class="payment-info">
+        <span class="payment-info-icon">👛</span>
+
+        <div>
+        <strong>Pay using your wallet</strong>
+        <p>Select your preferred wallet to continue.</p>
+        </div>
+    </div>
+
+    <form [formGroup]="walletForm" (ngSubmit)="payNow()">
+
+        <div class="form-field">
+        <label for="wallet">Select Wallet</label>
+
+        <select id="wallet" formControlName="wallet">
+            <option value="" disabled>Select your wallet</option>
+            <option value="paytm">Paytm</option>
+            <option value="amazonpay">Amazon Pay</option>
+            <option value="mobikwik">MobiKwik</option>
+            <option value="phonepe">PhonePe Wallet</option>
+        </select>
+
+        <small
+            class="field-error"
+            *ngIf="
+            walletForm.get('wallet')?.invalid &&
+            (walletForm.get('wallet')?.touched || walletSubmitted)
+            ">
+            Please select your wallet.
+        </small>
+        </div>
+
+        <div class="payment-actions">
+        <button type="submit" class="pay-button">
+            Pay
+            <span *ngIf="flight">
+            {{ flight.currency }} {{ flight.price }}
+            </span>
+        </button>
+        </div>
+
+    </form>
+    </div>
+
+  </div>
+
+</div>

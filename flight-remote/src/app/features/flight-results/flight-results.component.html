@@ -1,0 +1,32 @@
+
+
+<section class="results-section">
+<app-flight-search></app-flight-search>
+
+  <div class="results-container">
+
+    <div class="results-header">
+
+      <div>
+        <h1>Flight Results</h1>
+
+        <p *ngIf="search">
+          {{ search.from }} → {{ search.to }}
+        </p>
+      </div>
+
+      <span>
+        {{ flights.length }} flights found
+      </span>
+
+    </div>
+
+    <app-flight-result-card
+    *ngFor="let flight of flights"
+    [flight]="flight">
+  </app-flight-result-card>
+
+  </div>
+
+</section>
+

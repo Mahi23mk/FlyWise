@@ -1,0 +1,115 @@
+<div class="signup-page">
+
+  <div class="signup-card">
+
+    <h1>Create Account</h1>
+
+    <p class="subtitle">
+      Create an account to continue with your booking.
+    </p>
+
+    <form [formGroup]="signUpForm" (ngsubmit)="signUp()">
+
+      <div class="form-row">
+
+        <div class="form-field">
+          <label for="firstName">
+            First Name
+          </label>
+
+          <input
+            id="firstName"
+            type="text"
+            placeholder="First name"
+            formControlName="firstName"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="lastName">
+            Last Name
+          </label>
+
+          <input
+            id="lastName"
+            type="text"
+            placeholder="Last name"
+            formControlName="lastName"
+          />
+        </div>
+
+      </div>
+
+      <div class="form-field">
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Create a password"
+          formControlName="password"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="confirmPassword">
+          Confirm Password
+        </label>
+
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="Confirm your password"
+          formControlName="confirmPassword"
+        />
+        <small class="form-error"
+          *ngIf="
+            signUpForm.hasError('passwordMismatch') &&
+             signUpForm.get('confirmPassword')?.touched &&
+    signUpForm.get('confirmPassword')?.value"
+        >
+          Passwords do not match.
+        </small>
+
+      </div>
+
+      <p
+        class="form-error"
+        *ngIf="signUpError"
+      >
+        {{ signUpError }}
+      </p>
+     
+      <button
+        type="submit"
+        class="signup-button"
+        (click)="signUp()"
+      >
+        Create Account
+      </button>
+
+    </form>
+
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+
+  </div>
+
+</div>

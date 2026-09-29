@@ -1,0 +1,139 @@
+.signup-page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.signup-card h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #111827;
+}
+
+.subtitle {
+  margin: 8px 0 28px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* First Name + Last Name */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Form fields */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-field input::placeholder {
+  color: #9ca3af;
+}
+
+.form-field input:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+/* Sign Up button */
+
+.signup-button {
+  width: 100%;
+  margin-top: 4px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.signup-button:hover {
+  background: #1f2937;
+}
+
+.signup-button:active {
+  transform: translateY(1px);
+}
+
+/* Login link */
+
+.login-link {
+  margin: 24px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.login-link a {
+  color: #111827;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .signup-page {
+    padding: 24px 16px;
+  }
+
+  .signup-card {
+    padding: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.form-error {
+  margin: 12px 0;
+  color: #dc2626;
+  font-size: 13px;
+}

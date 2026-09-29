@@ -1,0 +1,363 @@
+.search-section {
+  width: 100%;
+  padding: 20px 24px 70px;
+  box-sizing: border-box;
+}
+
+.search-card {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+/* Trip type */
+
+.trip-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.trip-type label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trip-type label:hover {
+  background: #f8fafc;
+}
+
+.trip-type label.active {
+  color: #111827;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.trip-type input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #111827;
+}
+
+/* From / To */
+
+.route-row {
+  display: grid;
+  grid-template-columns: 1fr 52px 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.location-field {
+  min-height: 110px;
+  padding: 18px 20px;
+  box-sizing: border-box;
+  border: 1px solid #dbe2ea;
+  border-radius: 14px;
+  background: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.location-field:focus-within {
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.15);
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+/* Airport dropdown */
+
+.location-field select {
+  display: block;
+  width: 100%;
+  padding: 0 28px 0 0;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  color: #111827;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+
+  /* Remove default browser styling */
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* Custom arrow */
+  background-image:
+    linear-gradient(45deg, transparent 50%, #64748b 50%),
+    linear-gradient(135deg, #64748b 50%, transparent 50%);
+  background-position:
+    calc(100% - 12px) 50%,
+    calc(100% - 7px) 50%;
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+}
+
+.location-field select:focus {
+  outline: none;
+}
+
+.location-field select:invalid {
+  color: #94a3b8;
+}
+
+.location-field select option {
+  color: #111827;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Hint */
+
+.hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Swap button */
+
+.swap-button {
+  width: 44px;
+  height: 44px;
+  justify-self: center;
+  border: 1px solid #dbe2ea;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #334155;
+  font-size: 21px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.swap-button:hover {
+  background: #f8fafc;
+  transform: rotate(180deg);
+  border-color: #94a3b8;
+}
+
+/* Date / passengers / class */
+
+.details-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.return-placeholder {
+  width: 100%;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.detail-field-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-field {
+  min-height: 76px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.detail-field:focus-within {
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.12);
+}
+
+.detail-field input,
+.detail-field select {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.detail-field input {
+  min-height: 24px;
+}
+
+.detail-field select {
+  min-height: 24px;
+  cursor: pointer;
+}
+
+/* Errors */
+
+.error {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #dc2626;
+}
+.error-class{
+  min-height: 40px;
+}
+
+.location-field:has(.error),
+.detail-field:has(.error) {
+  border-color: #fca5a5;
+}
+
+/* Search button */
+
+.action-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 190px;
+  height: 52px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 12px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-button:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+  .route-row {
+    grid-template-columns: 1fr;
+  }
+
+  .swap-button {
+    margin: -4px auto;
+  }
+
+  .details-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .search-section {
+    padding: 12px 16px 40px;
+  }
+
+  .search-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .trip-type {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .trip-type label {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .location-field {
+    min-height: 95px;
+    padding: 16px;
+  }
+
+  .location-field select {
+    font-size: 19px;
+  }
+
+  .details-row {
+    grid-template-columns: 1fr;
+  }
+
+  .action-row {
+    margin-top: 16px;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+}
+
+.route-error {
+  margin: -6px 0 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #dc2626;
+}

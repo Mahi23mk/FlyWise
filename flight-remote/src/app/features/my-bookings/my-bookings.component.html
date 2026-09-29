@@ -1,0 +1,195 @@
+<div class="my-bookings-page">
+
+  <div class="my-bookings-container">
+
+    <div class="page-header">
+      <div>
+        <h1>My Bookings</h1>
+        <p>
+          View your confirmed flight bookings.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="book-flight-button"
+        (click)="goToFlights()">
+        Book a Flight
+      </button>
+    </div>
+
+
+    <!-- No bookings -->
+    <section
+      class="empty-state"
+      *ngIf="bookings.length === 0">
+
+      <div class="empty-icon">
+        ✈
+      </div>
+
+      <h2>No bookings yet</h2>
+
+      <p>
+        You don't have any confirmed flight bookings.
+      </p>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="goToFlights()">
+        Search Flights
+      </button>
+
+    </section>
+
+
+    <!-- Bookings -->
+    <div
+      class="booking-list"
+      *ngIf="bookings.length > 0">
+
+      <section
+        class="booking-card"
+        *ngFor="let booking of bookings">
+
+        <!-- Booking header -->
+        <div class="booking-header">
+
+          <div>
+            <span class="booking-label">
+              Booking ID
+            </span>
+
+            <strong>
+              {{ booking.id }}
+            </strong>
+          </div>
+
+          <span class="booking-status">
+            ✓ Confirmed
+          </span>
+
+        </div>
+
+
+        <!-- Flight -->
+        <div class="flight-section">
+
+          <div class="airline">
+
+            <strong>
+              {{ booking.flight.airline }}
+            </strong>
+
+            <span>
+              {{ booking.flight.flightNumber }}
+            </span>
+
+          </div>
+
+
+          <div class="route">
+
+            <div class="airport">
+              <strong>
+                {{ booking.flight.from }}
+              </strong>
+
+              <span>
+                {{ booking.flight.departureTime }}
+              </span>
+            </div>
+
+            <div class="route-line">
+              <span>
+                {{ booking.flight.duration }}
+              </span>
+
+              <div>
+                ─────→
+              </div>
+
+              <small>
+                {{
+                  booking.flight.stops === 0
+                    ? 'Non-stop'
+                    : booking.flight.stops + ' stop'
+                }}
+              </small>
+            </div>
+
+            <div class="airport">
+              <strong>
+                {{ booking.flight.to }}
+              </strong>
+
+              <span>
+                {{ booking.flight.arrivalTime }}
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="price">
+
+            <span>Amount Paid</span>
+
+            <strong>
+              {{ booking.currency }}
+              {{ booking.amount }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- Passenger -->
+        <div class="booking-footer">
+
+          <div>
+            <span>Passenger</span>
+
+            <strong>
+              {{ booking.passenger.firstName }}
+              {{ booking.passenger.lastName }}
+            </strong>
+          </div>
+
+          <div>
+            <span>Payment</span>
+
+            <strong>
+              {{
+                booking.paymentMethod === 'card'
+                  ? 'Credit / Debit Card'
+                  : booking.paymentMethod === 'upi'
+                  ? 'UPI'
+                  : booking.paymentMethod === 'netbanking'
+                  ? 'Net Banking'
+                  : booking.paymentMethod === 'wallet'
+                  ? 'Wallet'
+                  : booking.paymentMethod
+              }}
+            </strong>
+          </div>
+
+          <div>
+            <span>Booked On</span>
+
+            <strong>
+              {{ booking.createdAt | date:'dd MMM yyyy' }}
+            </strong>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>

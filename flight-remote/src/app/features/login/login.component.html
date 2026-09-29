@@ -1,0 +1,79 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <h1>Welcome Back</h1>
+
+    <p class="subtitle">
+      Login to continue with your booking.
+    </p>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="login()"
+    >
+
+      <div class="form-field">
+        <label for="email">Email</label>
+
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+
+        <small
+          class="field-error"
+          *ngIf="
+            loginForm.get('email')?.invalid &&
+            (loginForm.get('email')?.touched || submitted)
+          "
+        >
+          Please enter a valid email address.
+        </small>
+      </div>
+
+      <div class="form-field">
+        <label for="password">Password</label>
+
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+
+        <small
+          class="field-error"
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            (loginForm.get('password')?.touched || submitted)
+          "
+        >
+          Password is required.
+        </small>
+      </div>
+
+      <p
+        class="form-error"
+        *ngIf="loginError"
+      >
+        {{ loginError }}
+      </p>
+
+      <button
+        type="submit"
+        class="login-button"
+      >
+        Login
+      </button>
+
+    </form>
+
+    <p class="signup-link">
+      Don't have an account?
+      <a routerLink="/signup">Sign Up</a>
+    </p>
+
+  </div>
+</div>

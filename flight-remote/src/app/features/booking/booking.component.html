@@ -1,0 +1,201 @@
+<div class="booking-page">
+
+  <div class="booking-container">
+
+    <h1>Complete Your Booking</h1>
+
+    <p class="subtitle">
+      Review your flight and enter passenger details.
+    </p>
+
+    <!-- Flight Summary -->
+
+    <section
+      class="booking-section"
+      *ngIf="flight as selectedFlight"
+    >
+
+      <h2>Flight Summary</h2>
+
+      <div class="flight-summary">
+
+        <div class="airline-info">
+          <strong>{{ selectedFlight.airline }}</strong>
+          <span>{{ selectedFlight.flightNumber }}</span>
+        </div>
+
+        <div class="route">
+
+          <div>
+            <strong>{{ selectedFlight.departureTime }}</strong>
+            <span>{{ selectedFlight.from }}</span>
+          </div>
+
+          <span class="arrow">→</span>
+
+          <div>
+            <strong>{{ selectedFlight.arrivalTime }}</strong>
+            <span>{{ selectedFlight.to }}</span>
+          </div>
+
+        </div>
+
+        <div class="flight-info">
+          <span>{{ selectedFlight.duration }}</span>
+
+          <span>
+            {{ selectedFlight.stops === 0
+              ? 'Non-stop'
+              : selectedFlight.stops + ' stop(s)' }}
+          </span>
+        </div>
+
+        <div class="price">
+          {{ selectedFlight.currency }}
+          {{ selectedFlight.price }}
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Passenger Details -->
+
+    <section class="booking-section">
+
+      <h2>Passenger Details</h2>
+
+      <form
+        [formGroup]="passengerForm"
+        (ngSubmit)="continueToPayment()"
+      >
+
+        <div class="form-row">
+
+          <div class="form-field">
+
+            <label for="firstName">
+              First Name
+            </label>
+
+            <input
+              id="firstName"
+              type="text"
+              formControlName="firstName"
+              placeholder="Enter first name"
+            />
+
+            <small
+              class="field-error"
+              *ngIf="
+                passengerForm.get('firstName')?.invalid &&
+                (passengerForm.get('firstName')?.touched || submitted)
+              "
+            >
+              First name is required.
+            </small>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="lastName">
+              Last Name
+            </label>
+
+            <input
+              id="lastName"
+              type="text"
+              formControlName="lastName"
+              placeholder="Enter last name"
+            />
+
+            <small
+              class="field-error"
+              *ngIf="
+                passengerForm.get('lastName')?.invalid &&
+                (passengerForm.get('lastName')?.touched || submitted)
+              "
+            >
+              Last name is required.
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter email"
+          />
+
+          <small
+            class="field-error"
+            *ngIf="
+              passengerForm.get('email')?.invalid &&
+              (passengerForm.get('email')?.touched || submitted)
+            "
+          >
+            Please enter a valid email address.
+          </small>
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="phone">
+            Phone Number
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            formControlName="phone"
+            placeholder="10-digit phone number"
+            maxlength="10"
+            inputmode="numeric"
+          />
+
+          <small
+            class="field-error"
+            *ngIf="
+              passengerForm.get('phone')?.invalid &&
+              (passengerForm.get('phone')?.touched || submitted)
+            "
+          >
+            Please enter a valid 10-digit phone number.
+          </small>
+
+        </div>
+
+
+        <div class="booking-actions">
+
+          <button
+            type="submit"
+            class="continue-button"
+          >
+            Continue to Payment
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+  </div>
+
+</div>

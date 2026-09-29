@@ -1,0 +1,619 @@
+.payment-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #f5f7fb;
+}
+
+.payment-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.payment-container h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin: 8px 0 30px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* Payment sections */
+
+.payment-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.payment-section h2 {
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb;
+
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Flight summary */
+
+.payment-section p {
+  margin: 10px 0;
+  font-size: 15px;
+  color: #4b5563;
+}
+
+.payment-section strong {
+  color: #111827;
+}
+
+/* Flight route */
+
+.payment-section p:nth-of-type(2) {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 18px 0 12px;
+}
+
+/* Price */
+
+.payment-section p:last-of-type {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e7eb;
+
+  font-size: 16px;
+}
+
+.payment-section p:last-of-type strong {
+  font-size: 22px;
+  margin-left: 6px;
+}
+
+/* Passenger details */
+
+.payment-section:nth-child(3) p {
+  margin: 8px 0;
+}
+
+.payment-section:nth-child(3) p:first-of-type {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .payment-page {
+    padding: 25px 15px;
+  }
+
+  .payment-container h1 {
+    font-size: 26px;
+  }
+
+  .payment-section {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .payment-section h2 {
+    font-size: 18px;
+  }
+
+  .payment-section p:nth-of-type(2) {
+    font-size: 16px;
+  }
+}
+
+/* Flight Summary */
+
+.flight-summary {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.airline {
+  display: flex;
+  flex-direction: column;
+  min-width: 130px;
+}
+
+.airline strong {
+  font-size: 16px;
+  color: #111827;
+}
+
+.airline span {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.route div {
+  display: flex;
+  flex-direction: column;
+}
+
+.route strong {
+  font-size: 18px;
+  color: #111827;
+}
+
+.route span {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.route .arrow {
+  font-size: 20px;
+  color: #2563eb;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price span {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.price strong {
+  margin-top: 4px;
+  font-size: 20px;
+  color: #111827;
+}
+
+
+/* Passenger */
+
+.passenger-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.passenger-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+
+/* Payment Form */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-field input.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field-error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+
+/* Pay Button */
+
+.payment-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.pay-button {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 26px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pay-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.pay-button:active {
+  transform: translateY(0);
+}
+
+.pay-button span {
+  margin-left: 5px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .flight-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .route {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .price {
+    align-items: flex-start;
+  }
+
+  .passenger-info {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .payment-actions {
+    justify-content: stretch;
+  }
+
+  .pay-button {
+    width: 100%;
+  }
+}
+
+/* =========================
+   PAYMENT METHODS
+   ========================= */
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.payment-method {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  min-height: 82px;
+
+  padding: 16px;
+
+  border: 1px solid #dfe3ea;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.payment-method:hover {
+  border-color: #9eb7ed;
+  background: #fafcff;
+}
+
+.payment-method.active {
+  border-color: #2563eb;
+  background: #f5f8ff;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.payment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background: #eef3ff;
+
+  font-size: 21px;
+}
+
+.payment-method-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  flex: 1;
+}
+
+.payment-method-content strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #172033;
+}
+
+.payment-method-content small {
+  font-size: 12px;
+  color: #7a8496;
+}
+
+
+/* Radio indicator */
+
+.radio-circle {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+
+  border: 2px solid #c4cad5;
+  border-radius: 50%;
+
+  box-sizing: border-box;
+}
+
+.payment-method.active .radio-circle {
+  border-color: #2563eb;
+  background: #2563eb;
+  box-shadow: inset 0 0 0 4px #ffffff;
+}
+
+
+/* Temporary placeholders */
+
+.payment-placeholder {
+  text-align: center;
+}
+
+.payment-placeholder p {
+  margin: 0;
+  color: #7a8496;
+  font-size: 14px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .payment-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-method {
+    min-height: 72px;
+  }
+}
+
+/* =========================
+   UPI PAYMENT
+   ========================= */
+
+.upi-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 15px 16px;
+  margin-bottom: 24px;
+
+  background: #f7f9fc;
+  border: 1px solid #e8ebf1;
+  border-radius: 9px;
+}
+
+.upi-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+  background: #eef3ff;
+
+  font-size: 20px;
+}
+
+.upi-info strong {
+  display: block;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #172033;
+}
+
+.upi-info p {
+  margin: 4px 0 0;
+
+  font-size: 12px;
+  color: #7a8496;
+}
+
+.upi-info + form {
+  max-width: 600px;
+}
+
+@media (max-width: 700px) {
+
+  .upi-info {
+    align-items: flex-start;
+  }
+
+  .upi-info + form {
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   NET BANKING
+   ========================= */
+
+.payment-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 15px 16px;
+  margin-bottom: 24px;
+
+  background: #f7f9fc;
+  border: 1px solid #e8ebf1;
+  border-radius: 9px;
+}
+
+.payment-info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+  background: #eef3ff;
+
+  font-size: 20px;
+}
+
+.payment-info strong {
+  display: block;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #172033;
+}
+
+.payment-info p {
+  margin: 4px 0 0;
+
+  font-size: 12px;
+  color: #7a8496;
+}
+
+
+/* Bank dropdown */
+
+.form-field select {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d5d9e2;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #172033;
+
+  font-size: 14px;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-field select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-field select.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}

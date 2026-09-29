@@ -1,0 +1,118 @@
+<section class="details-section">
+
+  <div class="details-container">
+
+    <button class="back-button" type="button" (click)="backToResults()">
+      ← Back to results
+    </button>
+
+    <div class="details-card">
+
+      <div class="details-header">
+
+        <div>
+          <span class="airline">{{ flight?.airline }}</span>
+
+          <h1>{{ flight?.flightNumber }}</h1>
+        </div>
+
+        <div class="price">
+          <span>Price</span>
+
+          <strong>
+            {{ flight?.price | currency: flight?.currency : 'symbol' : '1.0-0' }}
+          </strong>
+
+          <small>per passenger</small>
+        </div>
+
+      </div>
+
+
+      <div class="route">
+
+        <div class="airport">
+
+          <strong>{{ flight?.departureTime }}</strong>
+
+          <span>{{ flight?.from }}</span>
+
+        </div>
+
+
+        <div class="route-line">
+
+          <span>{{ flight?.duration }}</span>
+
+          <div class="line"></div>
+
+          <span>
+            {{ flight?.stops === 0
+              ? 'Non-stop'
+              : flight?.stops + ' stop' }}
+          </span>
+
+        </div>
+
+
+        <div class="airport">
+
+          <strong>{{ flight?.arrivalTime }}</strong>
+
+          <span>{{ flight?.to }}</span>
+
+        </div>
+
+      </div>
+
+
+      <div class="information">
+
+        <div class="information-item">
+          <span>Airline</span>
+          <strong>{{ flight?.airline }}</strong>
+        </div>
+
+        <div class="information-item">
+          <span>Flight</span>
+          <strong>{{ flight?.flightNumber }}</strong>
+        </div>
+
+        <div class="information-item">
+          <span>From</span>
+          <strong>{{ flight?.from }}</strong>
+        </div>
+
+        <div class="information-item">
+          <span>To</span>
+          <strong>{{ flight?.to }}</strong>
+        </div>
+
+        <div class="information-item">
+          <span>Duration</span>
+          <strong>{{ flight?.duration }}</strong>
+        </div>
+
+        <div class="information-item">
+          <span>Stops</span>
+          <strong>
+            {{ flight?.stops === 0 ? 'Non-stop' : flight?.stops + ' stop' }}
+          </strong>
+        </div>
+
+      </div>
+
+
+      <div class="details-actions">
+
+        <button type="button" class="select-button"  (click)="selectFlight()">
+          Select Flight
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

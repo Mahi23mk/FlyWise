@@ -1,0 +1,59 @@
+<div class="flight-card">
+ <div class="airline-info">
+  <div class="logo-container">
+    <img
+      [src]="airlineLogos[flight.airline]"
+      [alt]="flight.airline + ' logo'"
+      class="airline-logo"
+      [class.air-india-logo]="flight.airline === 'Air India'"
+    />
+ </div>
+
+  <div>
+    <div class="airline-name">
+      {{ flight.airline }}
+    </div>
+
+    <div class="flight-number">
+      {{ flight.flightNumber }}
+    </div>
+  </div>
+</div>
+
+  <div class="time">
+    <strong>{{ flight.departureTime }}</strong>
+    <span>{{ flight.from }}</span>
+  </div>
+
+  <div class="duration">
+    <span>{{ flight.duration }}</span>
+
+    <span>
+      {{ flight.stops === 0
+        ? 'Non-stop'
+        : flight.stops + ' stop' }}
+    </span>
+  </div>
+
+  <div class="time">
+    <strong>{{ flight.arrivalTime }}</strong>
+    <span>{{ flight.to }}</span>
+  </div>
+
+  <div class="price">
+    <strong>
+      {{ flight.price | currency:'INR':'symbol':'1.0-0' }}
+    </strong>
+
+    <span>per passenger</span>
+
+    <button
+      type="button"
+      class="details-button"
+     (click)="viewDetails()"
+    >
+      View Details
+    </button>
+  </div>
+
+</div>

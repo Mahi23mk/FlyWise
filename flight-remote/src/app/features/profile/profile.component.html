@@ -1,0 +1,48 @@
+<div class="profile-page">
+
+  <div class="profile-card" *ngIf="currentUser">
+
+    <div class="profile-header">
+      <div class="profile-avatar">
+        {{ currentUser.firstName.charAt(0) }}
+      </div>
+
+      <div>
+        <h1>{{ currentUser.firstName }} {{ currentUser.lastName }}</h1>
+        <p>My Profile</p>
+      </div>
+    </div>
+
+    <div class="profile-details">
+
+      <div class="profile-field">
+        <span class="label">Username</span>
+        <span class="value">
+          {{ currentUser.firstName }} {{ currentUser.lastName }}
+        </span>
+      </div>
+
+      <div class="profile-field">
+        <span class="label">Email</span>
+        <span class="value">
+          {{ currentUser.email }}
+        </span>
+      </div>
+
+    </div>
+
+    <div class="profile-actions">
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

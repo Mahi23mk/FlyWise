@@ -1,0 +1,178 @@
+.booking-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.booking-page h1 {
+  margin-bottom: 24px;
+  font-size: 28px;
+  color: #111827;
+}
+
+.flight-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.flight-summary div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.flight-summary span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.flight-summary strong {
+  font-size: 16px;
+  color: #111827;
+}
+
+/* Passenger Details Section */
+
+.booking-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.booking-section h2 {
+  margin: 0 0 22px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Form layout */
+
+form {
+  width: 100%;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 15px;
+  color: #111827;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-field input::placeholder {
+  color: #9ca3af;
+}
+
+.form-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Invalid field */
+
+.form-field input.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+.form-field input.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Validation messages */
+
+.field-error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+/* Button */
+
+.booking-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.continue-button {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 24px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.continue-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.continue-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .booking-section {
+    padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .booking-section h2 {
+    font-size: 20px;
+  }
+
+  .booking-actions {
+    justify-content: stretch;
+  }
+
+  .continue-button {
+    width: 100%;
+  }
+}

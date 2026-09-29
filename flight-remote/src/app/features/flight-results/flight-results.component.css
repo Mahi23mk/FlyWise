@@ -1,0 +1,40 @@
+.results-section {
+  width: 100%;
+  padding: 32px 24px 70px;
+  box-sizing: border-box;
+}
+
+.results-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.results-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #111827;
+}
+
+.results-header p {
+  margin: 6px 0 0;
+  color: #64748b;
+}
+
+.results-header > span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.flight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

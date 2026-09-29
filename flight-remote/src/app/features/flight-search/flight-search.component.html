@@ -1,0 +1,233 @@
+<section class="search-section">
+  <div class="search-card">
+
+    <form
+      [formGroup]="searchForm"
+      (ngSubmit)="searchFlights()"
+    >
+
+      <!-- Trip Type -->
+      <div class="trip-type">
+        <label
+          [class.active]="searchForm.get('tripType')?.value === 'roundTrip'"
+        >
+          <input
+            type="radio"
+            formControlName="tripType"
+            value="roundTrip"
+          />
+          <span>Round trip</span>
+        </label>
+
+        <label
+          [class.active]="searchForm.get('tripType')?.value === 'oneWay'"
+        >
+          <input
+            type="radio"
+            formControlName="tripType"
+            value="oneWay"
+          />
+          <span>One way</span>
+        </label>
+
+        </div>
+
+
+      <!-- Main Route -->
+      <div class="route-row">
+
+        <!-- From -->
+        <div class="location-field">
+          <span class="label">FROM</span>
+
+          <select formControlName="from">
+            <option value="" disabled>Select departure city</option>
+
+            <option
+              *ngFor="let airport of airports"
+              [value]="airport.code"
+            >
+              {{ airport.city }} ({{ airport.code }})
+            </option>
+          </select>
+            <span
+              class="error"
+              *ngIf="searchForm.get('from')?.touched && searchForm.get('from')?.hasError('required')"
+            >
+              Departure city is required
+            </span>
+        </div>
+
+
+        <!-- Swap -->
+        <button
+          type="button"
+          class="swap-button"
+          (click)="swapLocations()"
+          aria-label="Swap locations"
+        >
+          ⇄
+        </button>
+
+
+        <!-- To -->
+        <div class="location-field">
+          <span class="label">TO</span>
+
+          <select formControlName="to">
+            <option value="" disabled>Select destination city</option>
+
+            <option
+              *ngFor="let airport of airports"
+              [value]="airport.code"
+            >
+              {{ airport.city }} ({{ airport.code }})
+            </option>
+          </select>
+
+
+           <div
+            class="error"
+            *ngIf="searchForm.get('to')?.touched && searchForm.get('to')?.hasError('required')"
+          >
+            Destination city is required
+          </div>
+        </div>
+
+      </div>
+
+      <div
+        class="route-error"
+        *ngIf="
+          searchForm.touched &&
+          searchForm.hasError('sameLocation')
+        "
+      >
+        Departure and destination cannot be the same.
+      </div>
+
+      <!-- Secondary Fields -->
+      <div class="details-row">
+
+        <!-- Departure -->
+      <div class="detail-field-wrapper">
+        <div class="detail-field">
+          <span class="label">DEPARTURE</span>
+
+          <input
+            type="date"
+            formControlName="departureDate"
+            [min]="today"
+          />
+        </div>
+
+            <div
+              class="error"
+              *ngIf="searchForm.get('tripType')?.value !== 'oneWay' &&
+              searchForm.hasError('invalidDateRange') &&
+              searchForm.get('departureDate')?.dirty"
+            >
+              departure date cannot be greater than return date.
+          </div>
+      
+      </div>
+         
+
+        <!-- Return -->
+      <div class="detail-field-wrapper">
+        <div
+          class="detail-field"
+        >
+          <span class="label">RETURN</span>
+
+  
+            <!-- One way -->
+          <button
+            *ngIf="searchForm.get('tripType')?.value === 'oneWay'"
+            type="button"
+            class="return-placeholder"
+            (click)="selectRoundTrip()"
+          >
+            Return
+          </button>
+
+          <!-- Round trip -->
+          <input
+            *ngIf="searchForm.get('tripType')?.value !== 'oneWay'"
+            type="date"
+            formControlName="returnDate"
+            [min]="today"
+          />
+        </div>
+
+        <div class="error-class">
+            <div
+              class="error"
+              *ngIf="searchForm.get('tripType')?.value !== 'oneWay' && 
+              searchForm.get('returnDate')?.touched && 
+              searchForm.hasError('returnDateRequired')"
+            >
+              Return date is required
+            </div>
+            <div
+              class="error"
+              *ngIf="searchForm.get('tripType')?.value !== 'oneWay' && 
+              searchForm.hasError('invalidDateRange') &&
+              searchForm.get('returnDate')?.dirty"
+            >
+              Return date cannot be before departure date.
+          </div>
+          </div>
+        </div>
+
+
+        <!-- Passengers -->
+        <div class="detail-field">
+          <span class="label">PASSENGERS</span>
+
+          <input
+            type="number"
+            formControlName="passengers"
+            min="1"
+          />
+        </div>
+
+
+        <!-- Class -->
+        <div class="detail-field">
+          <span class="label">CLASS</span>
+
+          <select formControlName="cabinClass">
+            <option value="economy">Economy</option>
+            <option value="premiumEconomy">
+              Premium Economy
+            </option>
+            <option value="business">
+              Business
+            </option>
+            <option value="first">
+              First
+            </option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <!-- Search Button -->
+      <div class="action-row">
+
+        <button
+          type="submit"
+          class="search-button"
+        >
+          <span>Search Flights</span>
+          <span class="arrow">→</span>
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</section>
