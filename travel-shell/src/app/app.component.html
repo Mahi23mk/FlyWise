@@ -1,0 +1,116 @@
+<div class="app">
+
+  <!-- Navbar -->
+  <header class="navbar">
+
+    <div class="brand">
+      <span class="brand-icon">✈️</span>
+      <span>FlyWise</span>
+    </div>
+
+    <nav class="nav-links">
+      <a
+        routerLink="/flights"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Search Flights
+      </a>
+
+      <a routerLink="/my-bookings" routerLinkActive="active">
+        My Bookings
+      </a>
+
+      <a routerLink="/login" routerLinkActive="active">
+        Login
+      </a>
+      <a routerLink="/signup" routerLinkActive="active">
+        SignUp
+      </a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="profile-btn" aria-label="Profile"
+       (click)="openProfile()"
+        >
+        👤
+      </button>
+
+      <button
+        class="menu-btn"
+        aria-label="Open menu"
+        (click)="menuOpen = !menuOpen">
+        ☰
+      </button>
+    </div>
+
+  </header>
+
+  <!-- Mobile navigation -->
+  <nav class="mobile-menu" [class.open]="menuOpen">
+
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="menuOpen = false">
+      Search Flights
+    </a>
+
+    <a
+      routerLink="/my-bookings"
+      routerLinkActive="active"
+      (click)="menuOpen = false">
+      My Bookings
+    </a>
+
+     <a
+      routerLink="/login"
+      routerLinkActive="active"
+      (click)="menuOpen = false">
+      Login
+    </a>
+
+     <a
+      routerLink="/signup"
+      routerLinkActive="active"
+      (click)="menuOpen = false">
+      SignUp
+    </a>
+
+  </nav>
+
+  <!-- Landing Page -->
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          ✈️ SMARTER WAY TO TRAVEL
+        </span>
+
+        <h1>
+          Where will you
+          <span>fly next?</span>
+        </h1>
+
+        <p>
+          Search and compare flights to find the perfect
+          journey for your next adventure.
+        </p>
+
+      </div>
+
+      <!-- Flight Search Remote -->
+      <div class="search-container">
+        <app-notification></app-notification>
+
+        <router-outlet></router-outlet>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

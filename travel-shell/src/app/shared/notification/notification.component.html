@@ -1,0 +1,33 @@
+<div
+  *ngIf="notification"
+  class="notification"
+  [ngClass]="notification.type"
+>
+  <div class="notification-content">
+
+    <span class="notification-icon">
+      <ng-container [ngSwitch]="notification.type">
+
+        <span *ngSwitchCase="'success'">✓</span>
+        <span *ngSwitchCase="'error'">✕</span>
+        <span *ngSwitchCase="'warning'">!</span>
+        <span *ngSwitchCase="'info'">i</span>
+
+      </ng-container>
+    </span>
+
+    <span class="notification-message">
+      {{ notification.message }}
+    </span>
+
+    <button
+      type="button"
+      class="close-button"
+      (click)="close()"
+      aria-label="Close notification"
+    >
+      ×
+    </button>
+
+  </div>
+</div>
